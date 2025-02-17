@@ -1,6 +1,16 @@
-<php?
+<?php
+
+$host = 'localhost';
+$dbname = 'team_projecttable';
+$user = 'root';
+$pass = '';
+
+$mysqli = new mysqli(hostname : $host,
+                     username : $user,
+                     password : $pass,
+                     database: $dbname);
 
 
-
+echo('success!')
 
 ?>
