@@ -1,0 +1,54 @@
+.divoutline{
+    border: 2.5px outset black;
+    padding-left: 5px;
+    position: relative;
+}
+
+table, th, td{
+    border: 2.5px solid #ddd;
+    padding: 8px;
+}
+
+.attended{
+    color: darkolivegreen;
+}
+
+.late{
+    color: blue;
+}
+
+.notattended{
+    color: crimson;
+}
+
+.button {
+  width: 200px;
+  height: 25px;
+  color: black;
+}
+
+.button:hover {
+  background-color: darkcyan;
+}
+
+#table_title {
+  border-collapse: collapse;
+}
+
+#table_title tr:nth-child(even){background-color: #f2f2f2;}
+#table_title tr:hover {background-color: #ddd;}
+#table_title th {
+    text-align: center;
+    background-color: darkcyan;
+}
+
+.formbox{
+	padding: 5px 2px;
+	width: 50%;
+	height: 27px;
+
+};
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}

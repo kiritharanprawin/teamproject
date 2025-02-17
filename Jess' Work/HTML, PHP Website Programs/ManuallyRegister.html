@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+    <link rel="stylesheet" href="Style.css">
+    <title>Manual Student Register Sheet</title>
+
+</head>
+
+<body>
+
+<div class = 'divoutline'>
+<h1 style="color: darkcyan;text-decoration-line: underline; text-decoration-color: darkcyan">
+    Manual Register Webpage</h1>
+</div>
+
+<center>
+<p style = 'background-color: darkcyan; font-size: 18px; font-weight: bold'>Fill the form below for each student present.</p>
+</center>
+
+<center>
+<form action = 'ManuallyRegisterPHP.php' method = 'post'>
+
+<!--Name input-->
+
+<label for = 'firstname'>Student First Name:</label><br>
+<input type ='text' id = 'firstname' name = 'firstname' placeholder = 'Student name...' class = 'formbox'><br>
+<label for = 'lastname'>Student Last Name:</label><br>
+<input type ='text' id = 'lastname' name = 'lastname' placeholder = 'Student last name...' class = 'formbox'><br>
+
+<!--Checkbox-->
+
+<label for = 'Attendance'>Attendance:</label><br>
+<select id = 'Attendance' name = 'Attendance' class = 'formbox'>
+	<option value = 'Attended'>Attended</option>
+	<option value = 'Late'>Late</option>
+	<option value = 'Not Attended/Missing'>Not Attended/Missing</option>
+</select><br><br>
+
+<!--Submit Student ID-->
+
+<label for ='myFile'>Student ID Photo:</label><br><br>
+<input type='file' id='myFile' name='filename'><br>
+
+<!--Submit-->
+<br>
+	<input type ='submit', class = 'button', value = 'Submit'>
+</br>
+
+</form>
+</center>
+
+<p style = 'background-color: darkcyan; color:darkcyan'>Placholder</p>
+</body>
+</html>
