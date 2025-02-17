@@ -11,6 +11,6 @@ $mysqli = new mysqli(hostname : $host,
                      database: $dbname);
 
 
-echo('success!')
+echo('You have successfully connected to the database!')
 
 ?>
