@@ -1,0 +1,20 @@
+{% extends 'attendance_system/base.html' %}
+
+{% block content %}
+    <h2>Class Schedule</h2>
+    <div id="calendar"></div>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: {{ events|safe }}
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}

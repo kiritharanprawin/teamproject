@@ -1,0 +1,6 @@
+<h2>Your Attendance</h2>
+<ul>
+    {% for record in attendance_records %}
+        <li>{{ record.date }} - {{ record.status }}</li>
+    {% endfor %}
+</ul>
