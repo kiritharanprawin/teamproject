@@ -1,0 +1,53 @@
+{% extends 'attendance_system/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Attendance System</h1>
+        <p class="lead">Efficiently manage attendance, schedules, and reports.</p>
+        <hr class="my-4">
+        <p>Get started by marking attendance, viewing reports, or checking your schedule.</p>
+        <div class="mt-4">
+            <a href="{% url 'mark_attendance' %}" class="btn btn-primary btn-lg mr-3">Mark Attendance</a>
+            <a href="{% url 'view_attendance' %}" class="btn btn-success btn-lg mr-3">View Attendance</a>
+            <a href="{% url 'schedule_calendar' %}" class="btn btn-info btn-lg">View Schedule</a>
+        </div>
+    </div>
+
+    <!-- Upcoming Classes Section -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2>Upcoming Classes</h2>
+            <ul class="list-group">
+                {% for schedule in upcoming_classes %}
+                <li class="list-group-item">
+                    <strong>{{ schedule.course_name }}</strong><br>
+                    <small>{{ schedule.date }} | {{ schedule.start_time }} - {{ schedule.end_time }}</small>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No upcoming classes.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Announcements Section -->
+        <div class="col-md-6">
+            <h2>Announcements</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">System Update</h5>
+                    <p class="card-text">We've added a new feature to view your class schedule in a calendar format. Check it out!</p>
+                    <a href="{% url 'schedule_calendar' %}" class="btn btn-outline-info btn-sm">Go to Calendar</a>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Attendance Reminder</h5>
+                    <p class="card-text">Don't forget to mark your attendance for today's classes.</p>
+                    <a href="{% url 'mark_attendance' %}" class="btn btn-outline-primary btn-sm">Mark Attendance</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_table',
+        'NAME': 'bugra_database',
         'USER': 'root',
         'HOST': 'localhost',
         'PORT': 3306,

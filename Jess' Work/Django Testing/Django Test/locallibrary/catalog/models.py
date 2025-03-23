@@ -6,22 +6,27 @@ from django.urls import reverse
 
 #   Statement I used to duplicated models: 'python manage.py inspectdb > models.py'
 
-class TestTable(models.Model):
-    student_id = models.AutoField(db_column='student_ID', primary_key=True)  # Field name made lowercase.
-    firstname = models.CharField(db_column='Firstname', max_length=65)  # Field name made lowercase.
-    lastname = models.CharField(db_column='Lastname', max_length=65)  # Field name made lowercase.
-    course = models.CharField(db_column='Course', max_length=265)  # Field name made lowercase.
-    year = models.IntegerField(db_column='Year')  # Field name made lowercase.
-    attendance_status = (
-        ('Attended', 'Attended'),
-        ('Late', 'Late'),
-        ('Missing', 'Missing')
-    )
-    attendance = models.CharField(db_column='Attendance', max_length=20, choices=attendance_status)
+class AttendanceTable(models.Model):
+    student_id = models.CharField(db_column='student_ID', primary_key=True, max_length=10)  # Field name made lowercase.
+    firstname = models.CharField(db_column='Firstname', max_length=200)  # Field name made lowercase.
+    lastname = models.CharField(db_column='Lastname', max_length=200)  # Field name made lowercase.
+    course = models.CharField(db_column='Course', max_length=200)  # Field name made lowercase.
+    module = models.CharField(db_column='Module', max_length=200)  # Field name made lowercase.
+    student_photo = models.TextField(db_column='Student_Photo')  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'test_table'
+        db_table = 'attendance table'
+
+
+class UserDetails(models.Model):
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    user_id = models.AutoField(db_column='user_ID', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'user_details'
 
 
 #   Create a new record using the models constructor
