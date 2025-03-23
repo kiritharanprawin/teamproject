@@ -12,7 +12,7 @@ class AttendanceTable(models.Model):
     lastname = models.CharField(db_column='Lastname', max_length=200)
     course = models.CharField(db_column='Course', max_length=200)
     module = models.CharField(db_column='Module', max_length=200)
-    student_photo = models.ImageField(db_column='Student_Photo', upload_to='images/')
+    student_photo = models.ImageField(db_column='Student_Photo', upload_to= 'attended_students_photos/')
 
     Attendance_Status = (
         ('Attended', 'Attended'),
@@ -27,6 +27,7 @@ class AttendanceTable(models.Model):
     class Meta:
         managed = False
         db_table = 'attendance table'
+
 
 class UserDetails(models.Model):
     username = models.CharField(max_length=200)
