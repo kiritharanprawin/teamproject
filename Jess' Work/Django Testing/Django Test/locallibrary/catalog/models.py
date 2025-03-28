@@ -38,6 +38,22 @@ class UserDetails(models.Model):
         managed = False
         db_table = 'user_details'
 
+
+class StudentDetails(models.Model):
+    student_id = models.CharField(db_column='student_ID', primary_key=True, max_length=10)
+    firstname = models.CharField(db_column='Firstname', max_length=265)
+    lastname = models.CharField(db_column='Lastname', max_length=265)
+    course = models.CharField(db_column='Course', max_length=265)
+    year = models.IntegerField(db_column='Year')
+    phone_number = models.IntegerField(db_column='Phone_Number')
+    email = models.EmailField(db_column='E-mail', max_length=265)
+    id_photo =models.ImageField(db_column='ID_Photo', upload_to= 'studentsID_photos/')
+
+    class Meta:
+        managed = False
+        db_table = 'student_details'
+
+
 #   Create a new record using the models constructor
 #   record = TestTable(firstname='Bart', lastname='Simpson', course='Law', year=4, attendance = 'A')
 #   record.save()
