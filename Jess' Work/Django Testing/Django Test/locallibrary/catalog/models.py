@@ -45,7 +45,7 @@ class StudentDetails(models.Model):
     lastname = models.CharField(db_column='Lastname', max_length=265)
     course = models.CharField(db_column='Course', max_length=265)
     year = models.IntegerField(db_column='Year')
-    phone_number = models.IntegerField(db_column='Phone_Number')
+    phone_number = models.CharField(db_column='Phone_Number', max_length=11)
     email = models.EmailField(db_column='E-mail', max_length=265)
     id_photo =models.ImageField(db_column='ID_Photo', upload_to= 'studentsID_photos/')
 
