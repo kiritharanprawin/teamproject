@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
@@ -27,7 +26,7 @@ class ClassSchedule(models.Model):
 
 
 class StudentDetails(models.Model):
-    student_ID = models.CharField(db_column='student_ID', primary_key=True, max_length=10)
+    student_ID = models.AutoField(db_column='student_ID', primary_key=True)
     firstname = models.CharField(db_column='Firstname', max_length=265)
     lastname = models.CharField(db_column='Lastname', max_length=265)
     course = models.CharField(db_column='Course', max_length=265)
@@ -42,7 +41,7 @@ class StudentDetails(models.Model):
 
 
 class StaffDetails(models.Model):
-    staff_ID = models.IntegerField(db_column='staff_ID', primary_key=True)
+    staff_ID = models.AutoField(db_column='staff_ID', primary_key=True)
     firstname = models.CharField(db_column='Firstname', max_length=265)
     lastname = models.CharField(db_column='Lastname', max_length=265)
     lecture_course = models.CharField(db_column='Lecture_Course', max_length=265)
