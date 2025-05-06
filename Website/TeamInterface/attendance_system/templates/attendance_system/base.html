@@ -24,76 +24,99 @@
             display: flex;
             flex-direction: column;
         }
-        
+
+        body.high-contrast {
+            background-color: black !important;
+            color: yellow !important;
+        }
+
+        body.high-contrast a {
+            color: cyan !important;
+        }
+        body.dark-mode {
+            background-color: #121212 !important;
+            color: #e0e0e0 !important;
+        }
+        .reduced-motion *, .reduced-motion *::before, .reduced-motion *::after {
+            transition: none !important;
+            animation: none !important;
+        }
+        .readable-font {
+            font-family: Arial, Helvetica, sans-serif !important;
+        }
+
+
+
         .navbar {
             background-color: var(--primary-color);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
+
         .navbar-brand {
             font-weight: 700;
             color: white !important;
         }
-        
+
         .nav-link {
             color: rgba(255,255,255,0.85) !important;
             font-weight: 500;
             transition: color 0.3s;
         }
-        
+
         .nav-link:hover {
             color: white !important;
         }
-        
+
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
         }
-        
+
         .btn-secondary {
             background-color: var(--secondary-color);
             border-color: var(--secondary-color);
         }
-        
+
         .card {
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s;
             border: none;
             border-radius: 8px;
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
         }
-        
+
         .footer {
             background-color: var(--dark-bg);
             color: white;
             padding: 1.5rem 0;
             margin-top: auto;
         }
-        
+
         /* Alert messages styling */
         .alert {
             border-radius: 4px;
             margin-top: 1rem;
         }
-        
+
         /* Dashboard cards */
         .dashboard-card {
             height: 100%;
             display: flex;
             flex-direction: column;
         }
-        
+
         .dashboard-card .card-body {
             flex: 1;
         }
-        
+
         .dashboard-card .icon {
             font-size: 2.5rem;
             color: var(--primary-color);
         }
+
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -111,6 +134,9 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'settings' %}"><i class="fas fa-chart-bar me-1"></i> Settings</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -200,6 +226,83 @@
             <p class="mb-0">&copy; 2025 Attendance System. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Button to open modal -->
+    <button type="button" class="btn btn-primary position-fixed bottom-0 end-0 m-4 z-3" data-bs-toggle="modal" data-bs-target="#webcamModal">
+      Open Webcam
+    </button>
+
+    <!-- Webcam Modal -->
+    <div class="modal fade" id="webcamModal" tabindex="-1" aria-labelledby="webcamModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="webcamModalLabel">Webcam Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopWebcam()"></button>
+          </div>
+          <div class="modal-body text-center">
+            <video id="webcam-video" class="rounded border shadow" width="100%" autoplay></video>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="stopWebcam()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let stream;
+
+      document.getElementById('webcamModal').addEventListener('shown.bs.modal', async () => {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          document.getElementById('webcam-video').srcObject = stream;
+        } catch (err) {
+          console.error("Webcam access error:", err);
+          alert("Could not access the webcam.");
+        }
+      });
+
+      function stopWebcam() {
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+        }
+        document.getElementById('webcam-video').srcObject = null;
+      }
+    </script>
+
+    <script>
+      window.onload = () => {
+        const root = document.documentElement;
+
+        // Font Size
+        const savedFontSize = localStorage.getItem('siteFontSize');
+        if (savedFontSize) {
+          root.style.fontSize = savedFontSize + 'px';
+        }
+
+        // High Contrast
+        if (localStorage.getItem('highContrast') === 'true') {
+          document.body.classList.add('high-contrast');
+        }
+
+        // Dark Mode
+        if (localStorage.getItem('darkMode') === 'true') {
+          document.body.classList.add('dark-mode');
+        }
+
+        // Reduce Motion
+        if (localStorage.getItem('reduceMotion') === 'true') {
+          document.body.classList.add('reduced-motion');
+        }
+
+        // Readable Font
+        if (localStorage.getItem('readableFont') === 'true') {
+          document.body.classList.add('readable-font');
+        }
+      };
+    </script>
+
 
     <!-- Bootstrap and other JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

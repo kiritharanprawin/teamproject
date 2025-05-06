@@ -12,6 +12,7 @@ import json
 from attendance_system import models
 from django.utils import timezone
 
+
 @login_required
 def mark_attendance(request):
     if request.method == 'POST':
@@ -19,6 +20,7 @@ def mark_attendance(request):
         Attendance.objects.create(user=request.user, status=status)
         return redirect('view_attendance')
     return render(request, 'attendance_system/mark_attendance.html')
+
 
 @login_required
 def view_attendance(request):
@@ -29,12 +31,13 @@ def view_attendance(request):
 def home(request):
     # Fetch upcoming classes (e.g., classes scheduled for today or later)
     upcoming_classes = ClassSchedule.objects.filter(date__gte=timezone.now().date()).order_by('date', 'start_time')[:5]
-    
+
     return render(request, 'attendance_system/home.html', {
         'upcoming_classes': upcoming_classes,
     })
 
-#user
+
+# user
 
 def register(request):
     if request.method == "POST":
@@ -50,6 +53,7 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'attendance_system/register.html', {'form': form})
+
 
 def user_login(request):
     if request.method == "POST":
@@ -70,6 +74,7 @@ def user_login(request):
         form = AuthenticationForm()
     return render(request, 'attendance_system/login.html', {'form': form})
 
+
 def user_logout(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
@@ -88,6 +93,7 @@ def attendance_chart(request):
         'counts': counts,
     })
 
+
 #
 
 def schedule_calendar(request):
@@ -99,3 +105,11 @@ def schedule_calendar(request):
     return render(request, 'attendance_system/schedule_calendar.html', {
         'events': json.dumps(events),
     })
+
+
+def settings_view(request):
+    return render(request, 'attendance_system/settings.html')
+
+
+def webcam_view(request):
+    return render(request, 'attendance_system/webcam.html')

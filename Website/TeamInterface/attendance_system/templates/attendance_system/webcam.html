@@ -1,0 +1,50 @@
+{% extends 'attendance_system/base.html' %}
+
+{% block content %}
+<div class="webcam-container" style="text-align: center; padding: 20px;">
+  <h1 class="text-2xl font-bold mb-4">Webcam Preview</h1>
+
+  <!-- Video element to display webcam feed -->
+  <video id="webcam-video" width="640" height="480" autoplay></video>
+
+  <!-- Button to stop webcam -->
+  <button id="stop-btn" class="mt-4 p-2 bg-red-500 text-white rounded hover:bg-red-600" style="display:none;">Stop Webcam</button>
+
+</div>
+
+<script>
+  // Get the video element
+  const video = document.getElementById('webcam-video');
+  const stopButton = document.getElementById('stop-btn');
+  let stream;
+
+  // Request access to the webcam
+  async function startWebcam() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+      stopButton.style.display = 'inline-block';
+    } catch (error) {
+      console.error("Error accessing webcam:", error);
+      alert("Unable to access webcam.");
+    }
+  }
+
+  // Stop the webcam stream
+  function stopWebcam() {
+    if (stream) {
+      const tracks = stream.getTracks();
+      tracks.forEach(track => track.stop());
+      video.srcObject = null;
+      stopButton.style.display = 'none';
+    }
+  }
+
+  // Start the webcam when the page loads
+  window.onload = startWebcam;
+
+  // Stop the webcam when the stop button is clicked
+  stopButton.onclick = stopWebcam;
+</script>
+
+{% endblock %}

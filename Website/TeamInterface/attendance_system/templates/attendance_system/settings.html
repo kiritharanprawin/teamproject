@@ -1,0 +1,127 @@
+{% extends 'attendance_system/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4" tabindex="0">Accessibility & Display Settings</h1>
+
+  <!-- Font Size -->
+  <div class="mb-4">
+    <h5>Font Size</h5>
+    <p>Adjust the text size for better readability.</p>
+    <div class="d-flex gap-2">
+      <button id="increase-font" class="btn btn-outline-primary">A+</button>
+      <button id="decrease-font" class="btn btn-outline-primary">A-</button>
+    </div>
+  </div>
+
+  <!-- High Contrast -->
+  <div class="mb-4">
+    <h5>High Contrast Mode</h5>
+    <p>Use a black background with yellow text for higher visibility.</p>
+    <button id="toggle-contrast" class="btn btn-outline-dark">Toggle High Contrast</button>
+  </div>
+
+  <!-- Dark Mode -->
+  <div class="mb-4">
+    <h5>Dark Mode</h5>
+    <p>Reduces screen brightness for low-light environments.</p>
+    <button id="toggle-darkmode" class="btn btn-outline-secondary">Toggle Dark Mode</button>
+  </div>
+
+  <!-- Reduce Motion -->
+  <div class="mb-4">
+    <h5>Reduce Motion</h5>
+    <p>Disable transitions and animations for comfort.</p>
+    <button id="toggle-motion" class="btn btn-outline-warning">Toggle Reduce Motion</button>
+  </div>
+
+  <!-- Readable Font -->
+  <div class="mb-4">
+    <h5>Readable Font</h5>
+    <p>Switch to a sans-serif font for easier reading.</p>
+    <button id="toggle-font" class="btn btn-outline-info">Toggle Readable Font</button>
+  </div>
+</div>
+
+<style>
+  body.high-contrast {
+    background-color: black !important;
+    color: yellow !important;
+  }
+  body.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+  }
+  .readable-font {
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+  .reduced-motion *, .reduced-motion *::before, .reduced-motion *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  let fontSize = parseInt(localStorage.getItem('siteFontSize') || 16);
+
+  function applySettings() {
+    if (localStorage.getItem('siteFontSize')) {
+      root.style.fontSize = fontSize + "px";
+    }
+
+    if (localStorage.getItem('highContrast') === 'true') {
+      document.body.classList.add('high-contrast');
+    }
+
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+
+    if (localStorage.getItem('reduceMotion') === 'true') {
+      document.body.classList.add('reduced-motion');
+    }
+
+    if (localStorage.getItem('readableFont') === 'true') {
+      document.body.classList.add('readable-font');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applySettings();
+
+    document.getElementById('increase-font').onclick = () => {
+      fontSize += 2;
+      root.style.fontSize = fontSize + "px";
+      localStorage.setItem('siteFontSize', fontSize);
+    };
+
+    document.getElementById('decrease-font').onclick = () => {
+      fontSize = Math.max(12, fontSize - 2);
+      root.style.fontSize = fontSize + "px";
+      localStorage.setItem('siteFontSize', fontSize);
+    };
+
+    document.getElementById('toggle-contrast').onclick = () => {
+      document.body.classList.toggle('high-contrast');
+      localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+    };
+
+    document.getElementById('toggle-darkmode').onclick = () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    };
+
+    document.getElementById('toggle-motion').onclick = () => {
+      document.body.classList.toggle('reduced-motion');
+      localStorage.setItem('reduceMotion', document.body.classList.contains('reduced-motion'));
+    };
+
+    document.getElementById('toggle-font').onclick = () => {
+      document.body.classList.toggle('readable-font');
+      localStorage.setItem('readableFont', document.body.classList.contains('readable-font'));
+    };
+  });
+</script>
+{% endblock %}
+
