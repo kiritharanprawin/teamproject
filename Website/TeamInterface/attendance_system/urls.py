@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import mark_attendance, view_attendance, home, register, user_login, user_logout, attendance_chart, \
-    schedule_calendar, settings_view, webcam_view
+    schedule_calendar, settings_view, webcam_view, faq_view
 
 urlpatterns = [
     path('', home, name='home'),
@@ -13,4 +13,5 @@ urlpatterns = [
     path('schedule-calendar/', schedule_calendar, name='schedule_calendar'),
     path('settings/', settings_view, name='settings'),
     path('webcam/', webcam_view, name='webcam'),
+    path('faq/', faq_view, name='faq'),
 ]
