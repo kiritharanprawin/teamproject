@@ -1,0 +1,103 @@
+{% extends 'attendance_system/base.html' %}
+
+{% block title %}FAQ - Attendance System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .faq-container {
+        max-width: 800px;
+        margin: 2rem auto;
+    }
+
+    .faq-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .faq-header h2 {
+        color: #3f51b5;
+        font-weight: 700;
+    }
+
+    .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(63, 81, 181, 0.25);
+        border-color: #3f51b5;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="faq-container">
+    <div class="faq-header">
+        <h2>Frequently Asked Questions</h2>
+        <p class="text-muted">Your questions answered in one place</p>
+    </div>
+
+    <div class="accordion" id="faqAccordion" role="region" aria-label="FAQ Accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1-heading">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                    How do I register for an account?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Click on the “Sign Up” link on the login page and fill in the required details. Once registered, you can log in immediately.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2-heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                    I forgot my password. What should I do?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Use the “Forgot Password” link on the login screen. We’ll send reset instructions to your registered email address.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3-heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                    Can I edit my attendance after it's submitted?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Only administrators can edit attendance records. If there’s a mistake, please contact your administrator.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4-heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                    Is my data secure?
+                </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes. We use modern encryption, secure authentication, and strict access controls to ensure data protection.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq5-heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                    How can I contact support?
+                </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Visit the Contact page or email us at <strong>support@attendancesystem.com</strong>.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
