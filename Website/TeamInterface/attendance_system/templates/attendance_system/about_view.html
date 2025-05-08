@@ -1,0 +1,56 @@
+{% extends 'attendance_system/base.html' %}
+
+{% block title %}About - Attendance System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .about-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .about-header h2 {
+        color: #3f51b5;
+        font-weight: 700;
+    }
+
+    .about-content p {
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+
+    .highlight {
+        color: #303f9f;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-header">
+        <h2>About Attendance System</h2>
+        <p class="text-muted">Empowering institutions through seamless attendance tracking</p>
+    </div>
+    <div class="about-content">
+        <p>
+            The <span class="highlight">Attendance System</span> is a modern web-based application designed to simplify and optimize attendance management for schools, universities, and organizations.
+        </p>
+        <p>
+            Our platform provides real-time tracking, secure data handling, and user-friendly interfaces to ensure efficiency for both staff and students. Whether you're managing a classroom or a corporate team, this system makes monitoring attendance effortless.
+        </p>
+        <p>
+            Built with Django and Bootstrap, the system focuses on both functionality and accessibility — so everyone benefits.
+        </p>
+    </div>
+</div>
+{% endblock %}
