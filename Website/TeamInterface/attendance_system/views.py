@@ -116,3 +116,6 @@ def webcam_view(request):
 
 def faq_view(request):
     return render(request, 'attendance_system/faq.html')
+
+def about_view(request):
+    return render(request, 'attendance_system/about.html')
