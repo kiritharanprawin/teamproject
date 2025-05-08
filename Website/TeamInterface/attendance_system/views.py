@@ -113,3 +113,6 @@ def settings_view(request):
 
 def webcam_view(request):
     return render(request, 'attendance_system/webcam.html')
+
+def faq_view(request):
+    return render(request, 'attendance_system/faq.html')
